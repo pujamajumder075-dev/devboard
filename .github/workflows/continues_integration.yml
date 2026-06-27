@@ -1,5 +1,5 @@
 # Goal : Build the image for Devboard frontend & Push to Docker hub
-name : CI
+name : Continues_Integration
 on: 
   push:
     branches : [master]
