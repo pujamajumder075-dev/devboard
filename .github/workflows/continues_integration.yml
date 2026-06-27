@@ -15,5 +15,3 @@ jobs:
 
       - name: Docker setup [Login]
         uses: docker/login-action@v4
-
-      - name: Docker build
