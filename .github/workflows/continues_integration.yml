@@ -20,6 +20,7 @@ jobs:
         run: npm ci
       - name: install linters
         run: npm install eslist --save-dev
+
       - name: Run linters
         uses: wearerequired/lint-action@v2
         with:
