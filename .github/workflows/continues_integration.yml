@@ -18,7 +18,8 @@ jobs:
       - name: Install Node.js dependencies
         working-directory: ./frontend
         run: npm ci
-
+      - name: install linters
+        run: npm install eslist --save-dev
       - name: Run linters
         uses: wearerequired/lint-action@v2
         with:
