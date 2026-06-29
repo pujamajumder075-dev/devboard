@@ -78,7 +78,5 @@ jobs:
   deploy :
     needs: [frontend, backend]
     uses : ./.github/workflows/cd.yml
-    secrets:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    secrets: inherit
 
