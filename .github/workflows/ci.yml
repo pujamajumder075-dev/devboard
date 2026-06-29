@@ -36,7 +36,7 @@ jobs:
             - name: Docker Setup [Login]
               uses: docker/login-action@v4
               with:
-                username: ${{ vars.DOCKERHUB_USERNAME }}
+                username: ${{ secrets.DOCKERHUB_USERNAME }}
                 password: ${{ secrets.DOCKERHUB_TOKEN }}
 
             - name: Docker Build and Push
@@ -44,7 +44,7 @@ jobs:
               with:
                 context: ./frontend
                 push: true
-                tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-frontend:latest
+                tags: ${{ secrets.DOCKERHUB_USERNAME }}/devboard-frontend:latest
                 
     backend:
         # Github runner
@@ -75,7 +75,7 @@ jobs:
             - name: Docker Setup [Login]
               uses: docker/login-action@v4
               with:
-                username: ${{ vars.DOCKERHUB_USERNAME }}
+                username: ${{ secrets.DOCKERHUB_USERNAME }}
                 password: ${{ secrets.DOCKERHUB_TOKEN }}
 
             - name: Docker Build and Push
@@ -83,7 +83,7 @@ jobs:
               with:
                 context: ./backend
                 push: true
-                tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-backend:latest
+                tags: ${{ secrets.DOCKERHUB_USERNAME }}/devboard-backend:latest
     deploy:
         needs: [frontend,backend]
         uses: ./.github/workflows/cd.yml
