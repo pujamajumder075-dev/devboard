@@ -75,3 +75,10 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/devboard_backend_ci:latest
 
+  deploy :
+    needs: [frontend, backend]
+    uses : ./.github/workflows/cd.yml
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
