@@ -3,7 +3,8 @@
 name : Go linting
 
 on :
-  workflow_dispatch:
+  schedule :
+    - cron : '25 9 * * *' #run at 9:25 AM UTC every day
 
 jobs :
   code-format :
