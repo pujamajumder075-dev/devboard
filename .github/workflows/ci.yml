@@ -5,12 +5,10 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
-      - advanced
+    branches: [feat/matrix-docker-build ]
 
 jobs:
-  frontend:
+  lint-frontend:
     runs-on: ubuntu-latest
     steps :
       - name: Checkout code
@@ -30,19 +28,9 @@ jobs:
       - name: run tests
         run: npm run test
         working-directory: frontend
-      - name : Docker login
-        uses: docker/login-action@v4
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: ./frontend
-          push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/devboard_frontend_ci:latest
+      
 
-  backend:
+  lint-backend:
     runs-on: ubuntu-latest
     steps :
       - name: Checkout code
@@ -63,6 +51,17 @@ jobs:
       - name: run tests
         run: go test  
         working-directory: backend
+      
+  build-and-push:
+    needs: [lint-frontend, lint-backend]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        folder: [frontend, backend]
+    steps :
+      - name: Checkout code
+        uses: actions/checkout@v7
       - name : Docker login
         uses: docker/login-action@v4
         with:
@@ -71,12 +70,12 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./backend
+          context: ./${{ matrix.folder }}
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/devboard_backend_ci:latest
-
+          tags: ${{ secrets.DOCKER_USERNAME }}/devboard_${{ matrix.folder }}_ci:latest
+    
   deploy :
-    needs: [frontend, backend]
+    needs: [lint-frontend, lint-backend, build-and-push]
     uses : ./.github/workflows/cd.yml
     secrets: inherit
 
