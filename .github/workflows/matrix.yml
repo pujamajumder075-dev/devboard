@@ -23,10 +23,10 @@ jobs :
           cache-dependency-path : ./backend/go.sum
 
       - name : run go formatter
-          run : go fmt ./...
-          working-directory : ./backend
+        run : go fmt ./...
+        working-directory : ./backend
 
       - name : Run go vet
-          run : go vet ./...
-          working-directory : ./backend
+        run : go vet ./...
+        working-directory : ./backend
 
