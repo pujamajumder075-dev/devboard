@@ -1,8 +1,8 @@
 # Goal : Build the image for Devboard frontend & Push to Docker hub, after linting the code
 name : Continues_Integration
 on: 
-  push:
-    branches : [master]
+  workflow_dispatch:
+  
 jobs:
   Build-and-Push :
     runs-on: ubuntu-latest
