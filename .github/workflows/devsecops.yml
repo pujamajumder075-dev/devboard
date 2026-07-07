@@ -6,5 +6,9 @@ on:
     workflow_dispatch:
 
 jobs:
-    code-quality:
+    code-quality: #Code Stage
         uses: ./.github/workflows/code-quality.yml
+
+    secret-scan: #Secret Scan Stage
+        uses: ./.github/workflows/secret-scan.yml
+        
