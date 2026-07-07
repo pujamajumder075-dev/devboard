@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: ${{ matrix.folder }} Dockerfile lint
-        uses: hadolint/hadolint-action@v2.7.0
+        uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: ${{ matrix.folder }}/Dockerfile
     
