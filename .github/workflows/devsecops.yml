@@ -11,3 +11,6 @@ jobs:
 
     secret-scan: #Secret Scan Stage
         uses: ./.github/workflows/secret-scanning.yml
+
+    dependency-scan: #Dependency Scan Stage
+        uses: ./.github/workflows/dependency-scan.yml
