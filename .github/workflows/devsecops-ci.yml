@@ -1,0 +1,10 @@
+# Goal - To run the DevSecOps pipeline to ensure the code is secure and free from vulnerabilities.
+
+name: DevSecOps Pipeline
+
+on:
+    workflow_dispatch:
+
+jobs:
+    code-quality:
+        uses: .github/workflows/code-quality.yml
