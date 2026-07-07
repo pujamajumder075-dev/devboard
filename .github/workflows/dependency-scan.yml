@@ -43,9 +43,13 @@ jobs:
             run : npm audit
             working-directory : frontend
 
-          - name : upload reports to artfactory
+          - name: Create reports directory
+            run: mkdir -p backend/reports
+
+
+          - name: Upload report
             uses: actions/upload-artifact@v4
             with:
               name: govulncheck-report
-              path: ./backend/reports/dependency-scan-report.txt
+              path: backend/reports/dependency-scan-report.txt
               retention-days: 7
