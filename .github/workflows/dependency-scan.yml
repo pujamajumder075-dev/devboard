@@ -1,0 +1,38 @@
+# Goal - ensure the packages and dependency have been audited for security
+
+name: Dependency Scan
+
+on :
+  workflow_call:
+
+jobs:
+  dependency-scan:
+      runs-on: ubuntu-latest
+      steps:
+          - name: Checkout code
+            uses: actions/checkout@v3
+          
+          - name : Setup Go
+            uses: actions/setup-go@v6
+            with :
+              go-version : '1.23'
+              go-version-file : 'go.mod'
+              cache-dependency-path : go.sum
+
+          - name: Run govulncheck
+            run: go install golang.org/x/vuln/cmd/govulncheck@latest
+            
+          - name: Run govulncheck
+            run: govulncheck ./...
+            working-directory : ./backend 
+          
+          - name: Setup NodeJs
+            uses: actions/setup-node@v6
+            with :
+              node-version : '20'
+              cache : npm
+              cache-dependency-path : frontend/package-lock.json
+
+          - name : Run dependency check
+            run : npm audit
+            working-directory : frontend
