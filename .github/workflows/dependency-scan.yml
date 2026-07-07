@@ -37,13 +37,15 @@ jobs:
 
           - name: Install npm Packages
             run: npm ci
+            working-directory : frontend
 
           - name : Run dependency check
             run : npm audit
             working-directory : frontend
 
           - name : upload reports to artfactory
-            uses: actions/upload-artifact@v3
+            uses: actions/upload-artifact@v4
             with:
               name: govulncheck-report
               path: ./backend/reports/dependency-scan-report.txt
+              retention-days: 7
