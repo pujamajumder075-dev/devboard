@@ -22,5 +22,5 @@ jobs:
         uses: hadolint/hadolint-action@v2.7.0
         with:
           dockerfile: ${{ matrix.folder }}/Dockerfile
-    uses: ./.github/workflows/dockerfile-scan.yml
+    
 
