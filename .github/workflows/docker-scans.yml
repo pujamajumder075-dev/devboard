@@ -34,7 +34,7 @@ jobs:
         working-directory: ${{ matrix.folder }}
 
       - name: ${{ matrix.folder }} trivy scan
-        uses: aquasecurity/trivy-action@v2.0.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ${{ secrets.DOCKER_USERNAME }}/devboard-${{ matrix.folder }}:latest
           format: 'table'
