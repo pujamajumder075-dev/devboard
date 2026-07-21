@@ -37,3 +37,8 @@ jobs:
         needs: [docker-push]
         uses: ./.github/workflows/cd.yml
         secrets: inherit
+
+    dast-scan: #DAST Scan Stage
+        needs: [deploy]
+        uses: ./.github/workflows/dast.yml
+        secrets: inherit
