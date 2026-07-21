@@ -17,3 +17,6 @@ jobs:
 
     docker-scan: #Dockerfile Scan Stage
         uses: ./.github/workflows/docker-scans.yml
+        secrets:
+            DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+            DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
