@@ -6,6 +6,7 @@ on:
     workflow_dispatch:
 
 jobs:
+#    ------------------   CI    --------------------
     code-quality: #Code Stage
         uses: ./.github/workflows/code-quality.yml
 
@@ -29,4 +30,10 @@ jobs:
     docker-push: #Docker Push Stage
         needs: [code-quality,secret-scan,dependency-scan,docker-scan,sonarqube-scan,code-test]
         uses: ./.github/workflows/docker-push.yml
+        secrets: inherit
+
+#  -------------------   CD    --------------------
+    deploy: #Deploy Stage
+        needs: [docker-push]
+        uses: ./.github/workflows/cd.yml
         secrets: inherit
