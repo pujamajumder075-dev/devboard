@@ -20,9 +20,7 @@ jobs:
         - name: run frontend tests
           run: npm run test
           working-directory: frontend
-      
-      runs-on: ubuntu-latest
-      steps:
+    
         - name: Setup Go
           uses: actions/setup-go@v6
           with:
