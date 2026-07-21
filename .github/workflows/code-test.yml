@@ -19,6 +19,7 @@ jobs:
 
         - name: Install npm Packages
           run: npm ci
+          working-directory: frontend
 
         - name: run frontend tests
           run: npm run test
