@@ -1,0 +1,19 @@
+# Goal - to check whether the code has no security vulnerabilities and code quality issues.
+
+name : Sonar Qube scan
+
+on:
+  workflow_call:
+
+jobs:
+  sonar-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+      
+      - name: SonarQube Scan
+        uses: sonarsource/sonarcloud-github-action@v2.3.1
+        with:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_URL: ${{ secrets.SONAR_URL }}
