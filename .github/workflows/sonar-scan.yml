@@ -16,4 +16,4 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@v3.1.0
         with:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_URL: ${{ secrets.SONAR_URL }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
